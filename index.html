@@ -1,467 +1,483 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#17213d">
-<title>A mais bela obra</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17213d">
+  <title>A mais bela obra</title>
 
-<style>
-:root {
-  --paper: #f8f1e9;
-  --ink: #493b37;
-  --muted: #8b7770;
-  --wine: #965b60;
-  --gold: #b69a70;
-}
+  <style>
+    :root {
+      --paper: #f8f1e9;
+      --ink: #493b37;
+      --muted: #786760;
+      --wine: #965b60;
+      --gold: #b69a70;
+    }
 
-* {
-  box-sizing: border-box;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-html {
-  scroll-behavior: smooth;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body {
-  position: relative;
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
-  line-height: 1.85;
-}
+    body {
+      position: relative;
+      min-height: 100vh;
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.85;
+    }
 
-/* Fundo inspirado em A Noite Estrelada */
-body::before {
-  content: "";
-  position: fixed;
-  inset: -5%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: .48;
-  background:
-    linear-gradient(rgba(22, 29, 54, .48), rgba(22, 29, 54, .58)),
-    url("https://commons.wikimedia.org/wiki/Special:FilePath/VanGogh-starry%20night.jpg")
-      center / cover no-repeat;
-  transform: translateY(var(--parallax, 0px)) scale(1.05);
-  transition: transform .15s ease-out;
-}
+    /* Fundo animado inspirado em A Noite Estrelada */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -6%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(22, 29, 54, .12), rgba(22, 29, 54, .18)),
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/VanGogh-starry%20night.jpg")
+        center / cover no-repeat;
+      animation: mover-fundo 35s ease-in-out infinite alternate;
+      will-change: transform;
+    }
 
-/* Mantém o conteúdo acima do fundo */
-body > * {
-  position: relative;
-  z-index: 1;
-}
+    @keyframes mover-fundo {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.12) translate(-1%, -1%);
+      }
+    }
 
-.hero {
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 3rem 1.4rem;
-  overflow: hidden;
-}
+    /* Mantém o conteúdo acima do fundo */
+    body > * {
+      position: relative;
+      z-index: 1;
+    }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  width: 270px;
-  height: 270px;
-  border: 1px solid #cdbba5;
-  border-radius: 50%;
-  opacity: .42;
-}
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 3rem 1.4rem;
+      overflow: hidden;
+      text-align: center;
+    }
 
-.eyebrow {
-  font: .7rem/1.5 Arial, sans-serif;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
+    .hero::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 270px;
+      height: 270px;
+      border: 1px solid #cdbba5;
+      border-radius: 50%;
+      opacity: .5;
+    }
 
-h1 {
-  max-width: 800px;
-  margin: 1.2rem auto;
-  color: #65494a;
-  font-size: clamp(2.35rem, 8vw, 5rem);
-  font-weight: 400;
-  line-height: 1.12;
-}
+    .hero-content {
+      width: min(100%, 820px);
+      padding: 1.5rem;
+      border: 1px solid rgba(205, 187, 165, .45);
+      border-radius: 18px;
+      background: rgba(248, 241, 233, .89);
+      box-shadow: 0 8px 35px rgba(22, 29, 54, .12);
+    }
 
-.subtitle {
-  max-width: 460px;
-  margin: 1.4rem auto 2.2rem;
-  color: var(--muted);
-  font-size: 1.05rem;
-  font-style: italic;
-}
+    .eyebrow {
+      color: var(--muted);
+      font: .7rem/1.5 Arial, sans-serif;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
 
-.flourish {
-  color: var(--gold);
-  font-size: 1.5rem;
-  letter-spacing: .4em;
-}
+    h1 {
+      max-width: 800px;
+      margin: 1.2rem auto;
+      color: #65494a;
+      font-size: clamp(2.35rem, 8vw, 5rem);
+      font-weight: 400;
+      line-height: 1.12;
+    }
 
-a.start {
-  display: inline-block;
-  padding: .85rem 1.5rem;
-  border-radius: 40px;
-  background: var(--wine);
-  color: white;
-  font: .75rem Arial, sans-serif;
-  letter-spacing: .12em;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: transform .25s, background .25s;
-}
+    .subtitle {
+      max-width: 460px;
+      margin: 1.4rem auto 2.2rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-style: italic;
+    }
 
-a.start:hover {
-  transform: translateY(-3px);
-  background: #7e484e;
-}
+    .flourish {
+      color: var(--gold);
+      font-size: 1.5rem;
+      letter-spacing: .4em;
+    }
 
-.scroll {
-  position: absolute;
-  bottom: 1.6rem;
-  font: .65rem Arial, sans-serif;
-  letter-spacing: .2em;
-  color: var(--muted);
-  text-transform: uppercase;
-}
+    a.start {
+      display: inline-block;
+      padding: .85rem 1.5rem;
+      border-radius: 40px;
+      background: var(--wine);
+      color: white;
+      font: .75rem Arial, sans-serif;
+      letter-spacing: .12em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform .25s, background .25s;
+    }
 
-main {
-  max-width: 760px;
-  margin: auto;
-  padding: 2rem 1.35rem 5rem;
-}
+    a.start:hover {
+      transform: translateY(-3px);
+      background: #7e484e;
+    }
 
-.intro {
-  padding: 3.5rem .5rem 2rem;
-  text-align: center;
-}
+    .scroll {
+      position: absolute;
+      bottom: 1.6rem;
+      color: #594b45;
+      font: .65rem Arial, sans-serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
 
-.intro p {
-  color: var(--muted);
-  font-size: 1.1rem;
-  font-style: italic;
-}
+    main {
+      max-width: 760px;
+      margin: auto;
+      padding: 2rem 1.35rem 5rem;
+    }
 
-.chapter {
-  padding: 2.3rem 0;
-  border-bottom: 1px solid #ddcfc0;
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .9s ease, transform .9s ease;
-}
+    .intro {
+      margin-bottom: 1rem;
+      padding: 2rem 1.25rem;
+      border-radius: 14px;
+      background: rgba(248, 241, 233, .9);
+      text-align: center;
+    }
 
-.chapter.visible {
-  opacity: 1;
-  transform: none;
-}
+    .intro p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+      font-style: italic;
+    }
 
-.chapter-no {
-  margin-bottom: 1.1rem;
-  color: var(--gold);
-  font: .65rem Arial, sans-serif;
-  letter-spacing: .25em;
-  text-align: center;
-  text-transform: uppercase;
-}
+    .chapter {
+      margin: 1rem 0;
+      padding: 2.3rem 1.25rem;
+      border-bottom: 1px solid #ddcfc0;
+      border-radius: 14px;
+      background: rgba(248, 241, 233, .9);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
 
-.chapter h2 {
-  margin: 0 0 1.5rem;
-  color: #80575a;
-  font-size: 1.45rem;
-  font-weight: 400;
-  text-align: center;
-}
+    .chapter.visible {
+      opacity: 1;
+      transform: none;
+    }
 
-.chapter p {
-  margin: 0 0 1.15rem;
-  font-size: 1.08rem;
-}
+    .chapter-no {
+      margin-bottom: 1.1rem;
+      color: #8a7049;
+      font: .65rem Arial, sans-serif;
+      letter-spacing: .25em;
+      text-align: center;
+      text-transform: uppercase;
+    }
 
-.chapter p:last-child {
-  margin-bottom: 0;
-}
+    .chapter h2 {
+      margin: 0 0 1.5rem;
+      color: #80575a;
+      font-size: 1.45rem;
+      font-weight: 400;
+      text-align: center;
+    }
 
-.emphasis {
-  margin: 1.8rem 0 !important;
-  color: #80575a;
-  font-size: 1.28rem !important;
-  font-style: italic;
-  text-align: center !important;
-}
+    .chapter p {
+      margin: 0 0 1.15rem;
+      font-size: 1.08rem;
+    }
 
-.final {
-  margin: 4rem 0 2rem;
-  padding: 2rem 1rem;
-  text-align: center;
-}
+    .chapter p:last-child {
+      margin-bottom: 0;
+    }
 
-.final .heart {
-  color: var(--wine);
-  font-size: 1.7rem;
-}
+    .emphasis {
+      margin: 1.8rem 0 !important;
+      color: #80575a;
+      font-size: 1.28rem !important;
+      font-style: italic;
+      text-align: center !important;
+    }
 
-.final p {
-  color: #80575a;
-  font-size: 1.25rem;
-  font-style: italic;
-}
+    .final {
+      margin: 3rem 0 2rem;
+      padding: 2rem 1.25rem;
+      border-radius: 14px;
+      background: rgba(248, 241, 233, .92);
+      text-align: center;
+    }
 
-.signature {
-  margin-top: 2.4rem;
-  color: var(--muted);
-  font-size: .9rem;
-}
+    .final .heart {
+      color: var(--wine);
+      font-size: 1.7rem;
+    }
 
-footer {
-  padding: 1.5rem;
-  color: #a28e82;
-  font: .65rem Arial, sans-serif;
-  letter-spacing: .18em;
-  text-align: center;
-  text-transform: uppercase;
-}
+    .final p {
+      color: #80575a;
+      font-size: 1.25rem;
+      font-style: italic;
+    }
 
-/* Abertura com rosa */
-#abertura {
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  display: grid;
-  place-items: center;
-  background: #f8f1e9;
-  transition: opacity 1s ease, visibility 1s ease;
-}
+    .signature {
+      margin-top: 2.4rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
 
-#abertura.sumir {
-  opacity: 0;
-  visibility: hidden;
-}
+    footer {
+      padding: 1.5rem;
+      color: #fff8ef;
+      font: .65rem Arial, sans-serif;
+      letter-spacing: .18em;
+      text-align: center;
+      text-shadow: 0 1px 4px #17213d;
+      text-transform: uppercase;
+    }
 
-.rosa {
-  position: relative;
-  display: grid;
-  width: 150px;
-  height: 180px;
-  place-items: center;
-  animation: aparecer .8s ease both;
-}
+    /* Tela inicial com girassol */
+    #abertura {
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      background: #f8f1e9;
+      transition: opacity 1s ease, visibility 1s ease;
+    }
 
-.petala {
-  position: absolute;
-  top: 27px;
-  left: 51px;
-  width: 48px;
-  height: 68px;
-  border-radius: 60% 60% 45% 45%;
-  background: linear-gradient(145deg, #c77b82, #8d3f50);
-  transform: scale(.05) rotate(var(--giro));
-  transform-origin: 50% 90%;
-  animation: abrir 1.5s cubic-bezier(.2, .8, .3, 1.2) forwards;
-  animation-delay: var(--atraso);
-}
+    #abertura.sumir {
+      opacity: 0;
+      visibility: hidden;
+    }
 
-.petala:nth-child(2) {
-  background: #b96572;
-}
+    .girassol {
+      position: relative;
+      width: 190px;
+      height: 190px;
+      animation: aparecer .8s ease both;
+    }
 
-.petala:nth-child(3) {
-  background: #a95061;
-}
+    .petala-girassol {
+      position: absolute;
+      top: 20px;
+      left: 76px;
+      width: 38px;
+      height: 78px;
+      border-radius: 50%;
+      background: linear-gradient(#ffd84d, #e89c22);
+      transform: scale(0);
+      transform-origin: 50% 75px;
+      animation: desabrochar 1.2s ease-out forwards;
+      animation-delay: var(--atraso);
+    }
 
-.petala:nth-child(4) {
-  background: #984253;
-}
+    .centro-girassol {
+      position: absolute;
+      top: 66px;
+      left: 66px;
+      width: 58px;
+      height: 58px;
+      border: 5px dotted #d49a35;
+      border-radius: 50%;
+      background: #654126;
+      transform: scale(0);
+      animation: desabrochar .7s ease-out forwards 1s;
+    }
 
-.centro-rosa {
-  position: absolute;
-  top: 52px;
-  left: 60px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #713545;
-  transform: scale(0);
-  animation: abrir .7s ease forwards 1s;
-}
+    @keyframes desabrochar {
+      to {
+        transform: scale(1) rotate(var(--giro, 0deg));
+      }
+    }
 
-@keyframes abrir {
-  to {
-    transform: scale(1) rotate(var(--giro, 0deg));
-  }
-}
+    @keyframes aparecer {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-@keyframes aparecer {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    @media (min-width: 700px) {
+      main {
+        padding-right: 3rem;
+        padding-left: 3rem;
+      }
 
-@media (min-width: 700px) {
-  main {
-    padding-right: 3rem;
-    padding-left: 3rem;
-  }
+      .chapter p {
+        font-size: 1.15rem;
+      }
+    }
 
-  .chapter p {
-    font-size: 1.15rem;
-  }
-}
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+      body::before {
+        animation: none;
+      }
 
-  .chapter {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
+      .chapter {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
 
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
-}
-</style>
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="abertura" aria-label="Uma rosa se abrindo">
-  <div class="rosa" aria-hidden="true">
-    <span class="petala" style="--giro:-55deg;--atraso:.15s"></span>
-    <span class="petala" style="--giro:-25deg;--atraso:.35s"></span>
-    <span class="petala" style="--giro:10deg;--atraso:.55s"></span>
-    <span class="petala" style="--giro:45deg;--atraso:.75s"></span>
-    <span class="centro-rosa"></span>
+  <div id="abertura" aria-label="Um girassol se abrindo">
+    <div class="girassol" aria-hidden="true">
+      <span class="petala-girassol" style="--giro:0deg;--atraso:.1s"></span>
+      <span class="petala-girassol" style="--giro:45deg;--atraso:.2s"></span>
+      <span class="petala-girassol" style="--giro:90deg;--atraso:.3s"></span>
+      <span class="petala-girassol" style="--giro:135deg;--atraso:.4s"></span>
+      <span class="petala-girassol" style="--giro:180deg;--atraso:.5s"></span>
+      <span class="petala-girassol" style="--giro:225deg;--atraso:.6s"></span>
+      <span class="petala-girassol" style="--giro:270deg;--atraso:.7s"></span>
+      <span class="petala-girassol" style="--giro:315deg;--atraso:.8s"></span>
+      <span class="centro-girassol"></span>
+    </div>
   </div>
-</div>
 
-<header class="hero">
-  <div>
-    <div class="eyebrow">Uma história que começou por acaso</div>
-    <div class="flourish">✧ ❧ ✧</div>
-    <h1>A mais bela obra que o destino me permitiu contemplar</h1>
-    <p class="subtitle">Algumas histórias começam antes mesmo de sabermos que estamos vivendo uma.</p>
-    <a class="start" href="#historia">Começar a história</a>
-  </div>
-  <div class="scroll">Desça devagar · há uma história aqui</div>
-</header>
+  <header class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">Uma história que começou por acaso</div>
+      <div class="flourish">✧ ❧ ✧</div>
+      <h1>A mais bela obra que o destino me permitiu contemplar</h1>
+      <p class="subtitle">Algumas histórias começam antes mesmo de sabermos que estamos vivendo uma.</p>
+      <a class="start" href="#historia">Começar a história</a>
+    </div>
+    <div class="scroll">Desça devagar · há uma história aqui</div>
+  </header>
 
-<main id="historia">
-  <section class="intro">
-    <div class="flourish">❦</div>
-    <p>Para você, que transformou um lugar comum no cenário de uma lembrança inesquecível.</p>
-  </section>
+  <main id="historia">
+    <section class="intro">
+      <div class="flourish">❦</div>
+      <p>Para você, que transformou um lugar comum no cenário de uma lembrança inesquecível.</p>
+    </section>
 
-  <section class="chapter">
-    <div class="chapter-no">Capítulo I · O acaso</div>
-    <h2>Uma placa, um começo</h2>
-    <p>Certo dia, mamãe caminhava tranquilamente pelo supermercado quando, por acaso, nossos olhos encontraram uma pequena oportunidade. Havia uma placa, próxima dali, com os seguintes dizeres: <em>“Estamos aceitando currículos.”</em></p>
-    <p>Sem grandes expectativas, mamãe decidiu enviar o meu. E foi assim, por uma dessas pequenas decisões que parecem tão insignificantes diante dos olhos do mundo, que comecei a trabalhar naquele lugar.</p>
-    <p>No princípio, eu dizia ser um trabalho pacato. Monótono, até. Os dias passavam sem grandes acontecimentos, as horas pareciam sempre iguais e eu sequer imaginava que aquele lugar, tão comum aos meus olhos, guardava o início de uma das histórias mais bonitas que eu viria a viver.</p>
-  </section>
+    <section class="chapter">
+      <div class="chapter-no">Capítulo I · O acaso</div>
+      <h2>Uma placa, um começo</h2>
+      <p>Certo dia, mamãe caminhava tranquilamente pelo supermercado quando, por acaso, nossos olhos encontraram uma pequena oportunidade. Havia uma placa, próxima dali, com os seguintes dizeres: <em>“Estamos aceitando currículos.”</em></p>
+      <p>Sem grandes expectativas, mamãe decidiu enviar o meu. E foi assim, por uma dessas pequenas decisões que parecem tão insignificantes diante dos olhos do mundo, que comecei a trabalhar naquele lugar.</p>
+      <p>No princípio, eu dizia ser um trabalho pacato. Monótono, até. Os dias passavam sem grandes acontecimentos, as horas pareciam sempre iguais e eu sequer imaginava que aquele lugar, tão comum aos meus olhos, guardava o início de uma das histórias mais bonitas que eu viria a viver.</p>
+    </section>
 
-  <section class="chapter">
-    <div class="chapter-no">Capítulo II · A descoberta</div>
-    <h2>Até que um dia ela chegou</h2>
-    <p>Lembro-me da primeira vez que a vi sendo treinada. Havia algo naquela moça que me fez esquecer, por alguns instantes, tudo aquilo que acontecia ao redor. Seus cabelos ruivos pareciam carregar consigo a beleza de um entardecer de outono; sua boca, tão delicada, despertava em mim uma vontade quase absurda de descobrir como seria receber um beijo daqueles lábios.</p>
-    <p>E os olhos... Ah, aqueles olhos! Eram lindos de uma maneira que me faltam palavras para descrever. Como se o próprio céu tivesse escolhido duas pequenas porções de si para repousar em seu rosto. E havia ainda suas sardinhas, espalhadas pelas bochechas como pequenas constelações que alguém, muito apaixonado pelo universo, desenhou especialmente para ela.</p>
-    <p>Passei a admirá-la em silêncio. Como quem contempla uma obra rara em um museu, como quem encontra um jardim florido no meio de um deserto, como quem observa o mar pela primeira vez e compreende que existem belezas que não foram feitas para serem explicadas, apenas sentidas.</p>
-  </section>
+    <section class="chapter">
+      <div class="chapter-no">Capítulo II · A descoberta</div>
+      <h2>Até que um dia ela chegou</h2>
+      <p>Lembro-me da primeira vez que a vi sendo treinada. Havia algo naquela moça que me fez esquecer, por alguns instantes, tudo aquilo que acontecia ao redor. Seus cabelos ruivos pareciam carregar consigo a beleza de um entardecer de outono; sua boca, tão delicada, despertava em mim uma vontade quase absurda de descobrir como seria receber um beijo daqueles lábios.</p>
+      <p>E os olhos... Ah, aqueles olhos! Eram lindos de uma maneira que me faltam palavras para descrever. Como se o próprio céu tivesse escolhido duas pequenas porções de si para repousar em seu rosto. E havia ainda suas sardinhas, espalhadas pelas bochechas como pequenas constelações que alguém, muito apaixonado pelo universo, desenhou especialmente para ela.</p>
+      <p>Passei a admirá-la em silêncio. Como quem contempla uma obra rara em um museu, como quem encontra um jardim florido no meio de um deserto, como quem observa o mar pela primeira vez e compreende que existem belezas que não foram feitas para serem explicadas, apenas sentidas.</p>
+    </section>
 
-  <section class="chapter">
-    <div class="chapter-no">Capítulo III · A aproximação</div>
-    <h2>Quando a distância diminuiu</h2>
-    <p>Mas eis que a história resolveu surpreender também a espectadora.</p>
-    <p>Aquela bela moça, que até então eu admirava de longe, começou a se aproximar. Talvez tenha encontrado encanto em meu jeito, talvez tenha enxergado algo que nem eu mesma sabia possuir. O fato é que começamos a conversar. Primeiro, algumas palavras despretensiosas; depois, conversas que pareciam não conhecer relógios. E, sem que percebêssemos, os dias foram passando, os minutos se transformaram em horas e a distância entre nós começou a diminuir.</p>
-    <p>Até que vieram nossas mãos.</p>
-    <p>Naquele ponto de ônibus, enquanto aguardávamos a condução, nossos dedos se entrelaçaram pela primeira vez. E, embora minhas mãos estivessem ali, junto às dela, minha cabeça parecia estar em outro mundo.</p>
-    <p class="emphasis">O que estava acontecendo?</p>
-    <p>Por que aquela moça, tão linda aos meus olhos, estava se aproximando de mim? Como poderia alguém que eu julgava tão distante estar agora dividindo comigo um gesto tão simples e, ao mesmo tempo, tão extraordinário?</p>
-    <p>Talvez fosse o destino. Talvez fosse apenas a vida, cansada de nos deixar passar um pelo outro sem que soubéssemos o que poderíamos ser.</p>
-  </section>
+    <section class="chapter">
+      <div class="chapter-no">Capítulo III · A aproximação</div>
+      <h2>Quando a distância diminuiu</h2>
+      <p>Mas eis que a história resolveu surpreender também a espectadora.</p>
+      <p>Aquela bela moça, que até então eu admirava de longe, começou a se aproximar. Talvez tenha encontrado encanto em meu jeito, talvez tenha enxergado algo que nem eu mesma sabia possuir. O fato é que começamos a conversar. Primeiro, algumas palavras despretensiosas; depois, conversas que pareciam não conhecer relógios. E, sem que percebêssemos, os dias foram passando, os minutos se transformaram em horas e a distância entre nós começou a diminuir.</p>
+      <p>Até que vieram nossas mãos.</p>
+      <p>Naquele ponto de ônibus, enquanto aguardávamos a condução, nossos dedos se entrelaçaram pela primeira vez. E, embora minhas mãos estivessem ali, junto às dela, minha cabeça parecia estar em outro mundo.</p>
+      <p class="emphasis">O que estava acontecendo?</p>
+      <p>Por que aquela moça, tão linda aos meus olhos, estava se aproximando de mim? Como poderia alguém que eu julgava tão distante estar agora dividindo comigo um gesto tão simples e, ao mesmo tempo, tão extraordinário?</p>
+      <p>Talvez fosse o destino. Talvez fosse apenas a vida, cansada de nos deixar passar um pelo outro sem que soubéssemos o que poderíamos ser.</p>
+    </section>
 
-  <section class="chapter">
-    <div class="chapter-no">Capítulo IV · O encontro</div>
-    <h2>Flores, uma carta e você</h2>
-    <p>Então resolvi convidá-la para um encontro.</p>
-    <p>Preparei flores e escrevi uma carta, pois me parecia pouco oferecer apenas palavras diante de alguém que me despertava tantas delas.</p>
-    <p>E lá estava ela.</p>
-    <p>Linda, usando um vestido longo, à minha espera em frente àquele shopping. Por alguns segundos, esqueci até mesmo o motivo de estarmos ali. Apenas a contemplei.</p>
-    <p class="emphasis">Pensei comigo: será que esta moça tem ideia de como pode mudar a minha vida?</p>
-    <p>Durante o evento, caminhamos entre exposições, obras e tantas outras formas de arte. Mas, por mais que meus olhos percorressem tudo aquilo que estava exposto, uma certeza insistia em permanecer comigo: não importava quantas obras existissem naquele lugar, nenhuma delas seria capaz de superar a beleza que caminhava ao meu lado.</p>
-    <p>E não digo isso por desconhecer a arte, mas porque, naquela noite, compreendi que algumas obras não precisam de molduras, não precisam de assinaturas e tampouco de um lugar reservado em museus.</p>
-    <p>Algumas simplesmente existem.</p>
-    <p class="emphasis">E a minha estava ali, sorrindo para mim.</p>
-  </section>
+    <section class="chapter">
+      <div class="chapter-no">Capítulo IV · O encontro</div>
+      <h2>Flores, uma carta e você</h2>
+      <p>Então resolvi convidá-la para um encontro.</p>
+      <p>Preparei flores e escrevi uma carta, pois me parecia pouco oferecer apenas palavras diante de alguém que me despertava tantas delas.</p>
+      <p>E lá estava ela.</p>
+      <p>Linda, usando um vestido longo, à minha espera em frente àquele shopping. Por alguns segundos, esqueci até mesmo o motivo de estarmos ali. Apenas a contemplei.</p>
+      <p class="emphasis">Pensei comigo: será que esta moça tem ideia de como pode mudar a minha vida?</p>
+      <p>Durante o evento, caminhamos entre exposições, obras e tantas outras formas de arte. Mas, por mais que meus olhos percorressem tudo aquilo que estava exposto, uma certeza insistia em permanecer comigo: não importava quantas obras existissem naquele lugar, nenhuma delas seria capaz de superar a beleza que caminhava ao meu lado.</p>
+      <p>E não digo isso por desconhecer a arte, mas porque, naquela noite, compreendi que algumas obras não precisam de molduras, não precisam de assinaturas e tampouco de um lugar reservado em museus.</p>
+      <p>Algumas simplesmente existem.</p>
+      <p class="emphasis">E a minha estava ali, sorrindo para mim.</p>
+    </section>
 
-  <section class="chapter">
-    <div class="chapter-no">Capítulo V · O início</div>
-    <h2>Ali, naquele instante</h2>
-    <p>Ao final daquela noite, vieram os abraços, os olhares demorados e, finalmente, o beijo.</p>
-    <p class="emphasis">E foi ali...</p>
-    <p>Ali, naquele pequeno instante em que nossos lábios se encontraram, que uma história começou a ser escrita.</p>
-    <p>Talvez mamãe não soubesse o que estava fazendo quando enviou aquele currículo. Talvez aquela placa fosse apenas mais uma entre tantas espalhadas pelo mundo. Talvez tudo não passasse de uma sucessão de acontecimentos comuns.</p>
-    <p>Mas gosto de pensar que, sem saber, ela havia me conduzido exatamente ao lugar onde o destino guardava uma surpresa.</p>
-    <p>Afinal, entre tantos caminhos que eu poderia ter percorrido, fui parar justamente naquele em que encontraria você.</p>
-  </section>
+    <section class="chapter">
+      <div class="chapter-no">Capítulo V · O início</div>
+      <h2>Ali, naquele instante</h2>
+      <p>Ao final daquela noite, vieram os abraços, os olhares demorados e, finalmente, o beijo.</p>
+      <p class="emphasis">E foi ali...</p>
+      <p>Ali, naquele pequeno instante em que nossos lábios se encontraram, que uma história começou a ser escrita.</p>
+      <p>Talvez mamãe não soubesse o que estava fazendo quando enviou aquele currículo. Talvez aquela placa fosse apenas mais uma entre tantas espalhadas pelo mundo. Talvez tudo não passasse de uma sucessão de acontecimentos comuns.</p>
+      <p>Mas gosto de pensar que, sem saber, ela havia me conduzido exatamente ao lugar onde o destino guardava uma surpresa.</p>
+      <p>Afinal, entre tantos caminhos que eu poderia ter percorrido, fui parar justamente naquele em que encontraria você.</p>
+    </section>
 
-  <section class="final">
-    <div class="heart">♥</div>
-    <p>O trabalho nunca foi tão pacato assim.<br>Eu é que ainda não conhecia a pessoa que faria todos os meus dias terem sentido.</p>
-    <div class="signature">Com amor, para você.</div>
-  </section>
-</main>
+    <section class="final">
+      <div class="heart">♥</div>
+      <p>O trabalho nunca foi tão pacato assim.<br>Eu é que ainda não conhecia a pessoa que faria todos os meus dias terem sentido.</p>
+      <div class="signature">Com amor, para você.</div>
+    </section>
+  </main>
 
-<footer>Escrito com carinho · Uma história nossa</footer>
+  <footer>Escrito com carinho · Uma história nossa</footer>
 
-<script>
-const sections = document.querySelectorAll(".chapter");
+  <script>
+    const sections = document.querySelectorAll(".chapter");
 
-if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      sections.forEach(section => observer.observe(section));
+    } else {
+      sections.forEach(section => section.classList.add("visible"));
+    }
+
+    // Esconde a abertura depois que o girassol termina de abrir
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.querySelector("#abertura").classList.add("sumir");
+      }, 2500);
     });
-  }, { threshold: .12 });
-
-  sections.forEach(section => observer.observe(section));
-} else {
-  sections.forEach(section => section.classList.add("visible"));
-}
-
-// Esconde a abertura depois que a rosa termina de desabrochar
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.querySelector("#abertura").classList.add("sumir");
-  }, 2200);
-});
-
-// Move o fundo suavemente durante a rolagem
-window.addEventListener("scroll", () => {
-  document.body.style.setProperty(
-    "--parallax",
-    `${window.scrollY * -0.08}px`
-  );
-}, { passive: true });
-</script>
+  </script>
 
 </body>
 </html>
-
