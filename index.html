@@ -1,154 +1,473 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Uma noite especial</title>
+  <meta name="theme-color" content="#101d3d">
+  <title>A mais bela obra</title>
 
   <style>
+    :root {
+      --paper: #101d3d;
+      --ink: #f4eadb;
+      --muted: #d4d2df;
+      --wine: #a94f62;
+      --gold: #e6c77a;
+    }
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      color: #243044;
+      background: #101d3d;
+      color: var(--ink);
       font-family: Georgia, "Times New Roman", serif;
-      background:
-        linear-gradient(rgba(10, 18, 32, 0.25), rgba(10, 18, 32, 0.25)),
-        url("./noite-estrelada_gif.gif") center center / cover fixed no-repeat;
+      line-height: 1.85;
+      position: relative;
+      isolation: isolate;
     }
 
-    .abertura {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -2%;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(4, 10, 28, .10), rgba(4, 10, 28, .22)),
+        url("./noite-estrelada_gif.gif");
+      background-size: 115% 115%;
+      background-position: 48% 46%;
+      background-repeat: no-repeat;
+      filter: saturate(1.28) contrast(1.08);
+      animation: skyDrift 24s ease-in-out infinite alternate;
+      will-change: background-position;
+    }
+
+    body::after {
+      content: "";
       position: fixed;
       inset: 0;
-      z-index: 10;
+      z-index: -1;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse at 50% 15%,
+        transparent 10%,
+        rgba(4, 10, 29, .2) 100%
+      );
+    }
+
+    @keyframes skyDrift {
+      0% {
+        background-position: 43% 42%;
+        background-size: 112% 112%;
+      }
+      50% {
+        background-position: 56% 50%;
+        background-size: 119% 119%;
+      }
+      100% {
+        background-position: 47% 58%;
+        background-size: 114% 114%;
+      }
+    }
+
+    .hero {
+      min-height: 100svh;
       display: grid;
       place-items: center;
-      background: #172338;
-      animation: sumir 0.7s ease 2.5s forwards;
+      text-align: center;
+      padding: 3rem 1.4rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .girassol {
-      font-size: clamp(5rem, 18vw, 10rem);
-      animation: florescer 2.2s ease-in-out forwards;
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 290px;
+      height: 290px;
+      border: 1px solid rgba(238, 211, 148, .4);
+      border-radius: 50%;
+      opacity: .55;
+      pointer-events: none;
     }
 
-    @keyframes florescer {
+    .hero > div:first-child {
+      position: relative;
+      z-index: 1;
+      max-width: 850px;
+      padding: 2rem 1.4rem;
+      background: rgba(7, 16, 39, .42);
+      border: 1px solid rgba(238, 211, 148, .2);
+      border-radius: 24px;
+      backdrop-filter: blur(3px);
+    }
+
+    .eyebrow {
+      font: .7rem/1.5 Arial, sans-serif;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: #e8d8b8;
+    }
+
+    h1 {
+      font-weight: 400;
+      font-size: clamp(2.35rem, 8vw, 5rem);
+      line-height: 1.12;
+      max-width: 800px;
+      margin: 1.2rem auto;
+      color: #fff2dc;
+      text-shadow: 0 3px 24px rgba(0, 0, 0, .35);
+    }
+
+    .subtitle {
+      font-style: italic;
+      color: #e3dfdf;
+      font-size: 1.05rem;
+      max-width: 460px;
+      margin: 1.4rem auto 2.2rem;
+    }
+
+    .flourish {
+      color: var(--gold);
+      font-size: 1.5rem;
+      letter-spacing: .4em;
+    }
+
+    a.start {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background: #985064;
+      padding: .85rem 1.5rem;
+      border-radius: 40px;
+      font: .75rem Arial, sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      transition: transform .25s, background .25s;
+      box-shadow: 0 5px 22px rgba(0, 0, 0, .22);
+    }
+
+    a.start:hover {
+      transform: translateY(-3px);
+      background: #b45e70;
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 1.6rem;
+      font: .65rem Arial, sans-serif;
+      letter-spacing: .2em;
+      color: #f0dfc6;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px #071027;
+    }
+
+    /* Girassol que entra animado na abertura */
+    .sunflower {
+      width: 116px;
+      height: 138px;
+      margin: 0 auto 1.1rem;
+      display: grid;
+      place-items: center;
+      font-size: 7rem;
+      filter: drop-shadow(0 0 18px rgba(238, 211, 148, .65));
+      animation:
+        sunflowerArrive 1.8s cubic-bezier(.2, .8, .2, 1) both,
+        sunflowerGlow 2.5s ease-in-out 1.8s infinite alternate;
+    }
+
+    @keyframes sunflowerArrive {
       0% {
-        transform: scale(0.15) rotate(-90deg);
         opacity: 0;
+        transform: translateY(110px) scale(.25) rotate(-70deg);
       }
-
-      65% {
-        transform: scale(1.15) rotate(12deg);
+      70% {
         opacity: 1;
+        transform: translateY(-10px) scale(1.12) rotate(12deg);
       }
-
       100% {
-        transform: scale(1) rotate(0);
         opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
       }
     }
 
-    @keyframes sumir {
+    @keyframes sunflowerGlow {
+      from {
+        filter: drop-shadow(0 0 10px rgba(238, 211, 148, .4));
+        transform: scale(1);
+      }
       to {
-        opacity: 0;
-        visibility: hidden;
+        filter: drop-shadow(0 0 25px rgba(238, 211, 148, .9));
+        transform: scale(1.06);
       }
     }
 
     main {
-      width: min(900px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 48px 0;
+      max-width: 820px;
+      margin: auto;
+      padding: 2rem 1.35rem 5rem;
     }
 
-    header,
-    section {
-      margin-bottom: 24px;
-      padding: clamp(24px, 5vw, 48px);
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      border-radius: 20px;
-      background: rgba(248, 241, 233, 0.93);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
-      backdrop-filter: blur(4px);
-    }
-
-    header {
+    .intro {
       text-align: center;
+      padding: 3.5rem 1.5rem 2rem;
+      margin: 1.2rem 0 1rem;
+      background: rgba(7, 16, 39, .68);
+      border: 1px solid rgba(238, 211, 148, .22);
+      border-radius: 22px;
+      backdrop-filter: blur(5px);
     }
 
-    h1 {
-      margin: 0 0 12px;
-      color: #183653;
-      font-size: clamp(2rem, 6vw, 3.5rem);
-    }
-
-    h2 {
-      margin-top: 0;
-      color: #28516a;
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.75;
-    }
-
-    .destaque {
-      color: #72551c;
+    .intro p {
       font-style: italic;
+      color: #eee3d5;
+      font-size: 1.1rem;
+    }
+
+    .chapter {
+      padding: 2.3rem clamp(1.2rem, 4vw, 2.6rem);
+      margin: 1.2rem 0;
+      border: 1px solid rgba(238, 211, 148, .2);
+      border-radius: 22px;
+      background: rgba(7, 16, 39, .72);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, .14);
+      backdrop-filter: blur(5px);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .9s ease, transform .9s ease;
+    }
+
+    .chapter.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .chapter-no {
+      text-align: center;
+      color: #e5c879;
+      font: .65rem Arial, sans-serif;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+
+    .chapter h2 {
+      text-align: center;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: #f3d9c6;
+      margin: 0 0 1.5rem;
+    }
+
+    .chapter p {
+      margin: 0 0 1.15rem;
+      font-size: 1.08rem;
+      color: #f0e9e2;
+    }
+
+    .chapter p:last-child {
+      margin-bottom: 0;
+    }
+
+    .emphasis {
+      text-align: center !important;
+      font-style: italic;
+      color: #f2c9cf !important;
+      font-size: 1.28rem !important;
+      margin: 1.8rem 0 !important;
+    }
+
+    .final {
+      margin: 4rem 0 2rem;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: rgba(7, 16, 39, .72);
+      border: 1px solid rgba(238, 211, 148, .25);
+      border-radius: 22px;
+      backdrop-filter: blur(5px);
+    }
+
+    .final .heart {
+      font-size: 1.7rem;
+      color: #ed9aaa;
+      animation: heartbeat 1.4s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+
+    .final p {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: #fff0df;
+    }
+
+    .signature {
+      margin-top: 2.4rem;
+      color: #e5c879;
+      font-size: .9rem;
     }
 
     footer {
-      padding: 8px 0 24px;
-      color: white;
       text-align: center;
-      text-shadow: 0 2px 6px #000;
+      padding: 1.5rem;
+      color: #e2d5c2;
+      font: .65rem Arial, sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px #071027;
+    }
+
+    @media (min-width: 700px) {
+      main {
+        padding-left: 3rem;
+        padding-right: 3rem;
+      }
+
+      .chapter p {
+        font-size: 1.15rem;
+      }
     }
 
     @media (max-width: 600px) {
-      body {
-        background-attachment: scroll;
+      body::before {
+        background-size: cover;
+        background-position: center;
       }
 
-      main {
-        padding-top: 24px;
+      .hero > div:first-child {
+        padding: 1.6rem 1rem;
+      }
+
+      .chapter {
+        padding: 2rem 1.2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .chapter {
+        transition: none;
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="abertura" aria-label="Abertura com girassol">
-    <div class="girassol" aria-hidden="true">🌻</div>
-  </div>
-
-  <main>
-    <header>
-      <h1>Uma noite especial</h1>
-      <p class="destaque">Um espaço feito com carinho para você.</p>
-    </header>
-
-    <section>
-      <h2>Sobre este momento</h2>
-      <p>
-        Escreva aqui a mensagem principal da sua página. O GIF ficará no fundo,
-        e este painel claro ajuda a manter o texto fácil de ler.
+  <header class="hero">
+    <div>
+      <div class="sunflower" aria-label="Um girassol entrando na abertura">🌻</div>
+      <div class="eyebrow">Uma história que começou por acaso</div>
+      <div class="flourish">✧ ❧ ✧</div>
+      <h1>A mais bela obra que o destino me permitiu contemplar</h1>
+      <p class="subtitle">
+        Algumas histórias começam antes mesmo de sabermos que estamos vivendo uma.
       </p>
+      <a class="start" href="#historia">Começar a história</a>
+    </div>
+    <div class="scroll">Desça devagar · há uma história aqui</div>
+  </header>
+
+  <main id="historia">
+    <section class="intro">
+      <div class="flourish">❦</div>
+      <p>Para você, que transformou um lugar comum no cenário de uma lembrança inesquecível.</p>
     </section>
 
-    <section>
-      <h2>Uma mensagem especial</h2>
-      <p>
-        Troque este texto pela mensagem que você quiser colocar na página.
-      </p>
+    <section class="chapter">
+      <div class="chapter-no">Capítulo I · O acaso</div>
+      <h2>Uma placa, um começo</h2>
+      <p>Certo dia, mamãe caminhava tranquilamente pelo supermercado quando, por acaso, nossos olhos encontraram uma pequena oportunidade. Havia uma placa, próxima dali, com os seguintes dizeres: <em>“Estamos aceitando currículos.”</em></p>
+      <p>Sem grandes expectativas, mamãe decidiu enviar o meu. E foi assim, por uma dessas pequenas decisões que parecem tão insignificantes diante dos olhos do mundo, que comecei a trabalhar naquele lugar.</p>
+      <p>No princípio, eu dizia ser um trabalho pacato. Monótono, até. Os dias passavam sem grandes acontecimentos, as horas pareciam sempre iguais e eu sequer imaginava que aquele lugar, tão comum aos meus olhos, guardava o início de uma das histórias mais bonitas que eu viria a viver.</p>
     </section>
 
-    <footer>
-      Feito com carinho ✨
-    </footer>
+    <section class="chapter">
+      <div class="chapter-no">Capítulo II · A descoberta</div>
+      <h2>Até que um dia ela chegou</h2>
+      <p>Lembro-me da primeira vez que a vi sendo treinada. Havia algo naquela moça que me fez esquecer, por alguns instantes, tudo aquilo que acontecia ao redor. Seus cabelos ruivos pareciam carregar consigo a beleza de um entardecer de outono; sua boca, tão delicada, despertava em mim uma vontade quase absurda de descobrir como seria receber um beijo daqueles lábios.</p>
+      <p>E os olhos... Ah, aqueles olhos! Eram lindos de uma maneira que me faltam palavras para descrever. Como se o próprio céu tivesse escolhido duas pequenas porções de si para repousar em seu rosto. E havia ainda suas sardinhas, espalhadas pelas bochechas como pequenas constelações que alguém, muito apaixonado pelo universo, desenhou especialmente para ela.</p>
+      <p>Passei a admirá-la em silêncio. Como quem contempla uma obra rara em um museu, como quem encontra um jardim florido no meio de um deserto, como quem observa o mar pela primeira vez e compreende que existem belezas que não foram feitas para serem explicadas, apenas sentidas.</p>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter-no">Capítulo III · A aproximação</div>
+      <h2>Quando a distância diminuiu</h2>
+      <p>Mas eis que a história resolveu surpreender também a espectadora.</p>
+      <p>Aquela bela moça, que até então eu admirava de longe, começou a se aproximar. Talvez tenha encontrado encanto em meu jeito, talvez tenha enxergado algo que nem eu mesma sabia possuir. O fato é que começamos a conversar. Primeiro, algumas palavras despretensiosas; depois, conversas que pareciam não conhecer relógios. E, sem que percebêssemos, os dias foram passando, os minutos se transformaram em horas e a distância entre nós começou a diminuir.</p>
+      <p>Até que vieram nossas mãos.</p>
+      <p>Naquele ponto de ônibus, enquanto aguardávamos a condução, nossos dedos se entrelaçaram pela primeira vez. E, embora minhas mãos estivessem ali, junto às dela, minha cabeça parecia estar em outro mundo.</p>
+      <p class="emphasis">O que estava acontecendo?</p>
+      <p>Por que aquela moça, tão linda aos meus olhos, estava se aproximando de mim? Como poderia alguém que eu julgava tão distante estar agora dividindo comigo um gesto tão simples e, ao mesmo tempo, tão extraordinário?</p>
+      <p>Talvez fosse o destino. Talvez fosse apenas a vida, cansada de nos deixar passar um pelo outro sem que soubéssemos o que poderíamos ser.</p>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter-no">Capítulo IV · O encontro</div>
+      <h2>Flores, uma carta e você</h2>
+      <p>Então resolvi convidá-la para um encontro.</p>
+      <p>Preparei flores e escrevi uma carta, pois me parecia pouco oferecer apenas palavras diante de alguém que me despertava tantas delas.</p>
+      <p>E lá estava ela.</p>
+      <p>Linda, usando um vestido longo, à minha espera em frente àquele shopping. Por alguns segundos, esqueci até mesmo o motivo de estarmos ali. Apenas a contemplei.</p>
+      <p class="emphasis">Pensei comigo: será que esta moça tem ideia de como pode mudar a minha vida?</p>
+      <p>Durante o evento, caminhamos entre exposições, obras e tantas outras formas de arte. Mas, por mais que meus olhos percorressem tudo aquilo que estava exposto, uma certeza insistia em permanecer comigo: não importava quantas obras existissem naquele lugar, nenhuma delas seria capaz de superar a beleza que caminhava ao meu lado.</p>
+      <p>E não digo isso por desconhecer a arte, mas porque, naquela noite, compreendi que algumas obras não precisam de molduras, não precisam de assinaturas e tampouco de um lugar reservado em museus.</p>
+      <p>Algumas simplesmente existem.</p>
+      <p class="emphasis">E a minha estava ali, sorrindo para mim.</p>
+    </section>
+
+    <section class="chapter">
+      <div class="chapter-no">Capítulo V · O início</div>
+      <h2>Ali, naquele instante</h2>
+      <p>Ao final daquela noite, vieram os abraços, os olhares demorados e, finalmente, o beijo.</p>
+      <p class="emphasis">E foi ali...</p>
+      <p>Ali, naquele pequeno instante em que nossos lábios se encontraram, que uma história começou a ser escrita.</p>
+      <p>Talvez mamãe não soubesse o que estava fazendo quando enviou aquele currículo. Talvez aquela placa fosse apenas mais uma entre tantas espalhadas pelo mundo. Talvez tudo não passasse de uma sucessão de acontecimentos comuns.</p>
+      <p>Mas gosto de pensar que, sem saber, ela havia me conduzido exatamente ao lugar onde o destino guardava uma surpresa.</p>
+      <p>Afinal, entre tantos caminhos que eu poderia ter percorrido, fui parar justamente naquele em que encontraria você.</p>
+    </section>
+
+    <section class="final">
+      <div class="heart">♥</div>
+      <p>O trabalho nunca foi tão pacato assim.<br>Eu é que ainda não conhecia a pessoa que faria todos os meus dias terem sentido.</p>
+      <div class="signature">Com amor, para você.</div>
+    </section>
   </main>
+
+  <footer>Escrito com carinho · Uma história nossa</footer>
+
+  <script>
+    const sections = document.querySelectorAll(".chapter");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      sections.forEach((section) => observer.observe(section));
+    } else {
+      sections.forEach((section) => section.classList.add("visible"));
+    }
+  </script>
 </body>
 </html>
