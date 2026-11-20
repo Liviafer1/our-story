@@ -171,17 +171,22 @@
     }
 
     /* Girassol que entra animado na abertura */
-    .sunflower {
-      width: 116px;
-      height: 138px;
-      margin: 0 auto 1.1rem;
-      display: grid;
-      place-items: center;
-      font-size: 7rem;
-      filter: drop-shadow(0 0 18px rgba(238, 211, 148, .65));
-      animation:
-        sunflowerArrive 1.8s cubic-bezier(.2, .8, .2, 1) both,
-        sunflowerGlow 2.5s ease-in-out 1.8s infinite alternate;
+   .sunflower {
+  width: 116px;
+  height: 138px;
+  margin: 0 auto 1.1rem;
+  display: grid;
+  place-items: center;
+  position: relative;
+  top: -25px;
+  font-size: 7rem;
+  filter: drop-shadow(0 0 18px rgba(238, 211, 148, .65));
+  animation:
+    sunflowerArrive 1.8s cubic-bezier(.2, .8, .2, 1) both,
+    sunflowerGlow 2.5s ease-in-out 1.8s infinite alternate;
+}
+
+      
     }
 
     @keyframes sunflowerArrive {
@@ -376,7 +381,7 @@
       <div class="flourish">✧ ❧ ✧</div>
       <h1>A mais bela obra que o destino me permitiu contemplar</h1>
       <p class="subtitle">
-        Algumas histórias começam antes mesmo de sabermos que estamos vivendo uma.
+        Algumas histórias começam antes mesmo de sabermos que estamos vivendo uma..
       </p>
       <a class="start" href="#historia">Começar a história</a>
     </div>
